@@ -1,6 +1,6 @@
 import { all } from '@redux-saga/core/effects'
-import { authSaga } from './users/sagas'
+import usersSaga from './users/sagas/index'
 
 export default function* rootSaga() {
-  yield all([authSaga()])
+  yield all([usersSaga()])
 }

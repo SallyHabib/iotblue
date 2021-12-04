@@ -1,6 +1,9 @@
-import { all } from 'redux-saga/effects'
+import { all, takeEvery } from 'redux-saga/effects'
+import { GET_USERS_REQUEST } from '../actions';
 import { getUsers } from './users'
 
-export function* authSaga() {
-  yield all([getUsers()])
+export default function* usersSaga() {
+  yield all([
+    takeEvery(GET_USERS_REQUEST, getUsers),
+  ]);
 }

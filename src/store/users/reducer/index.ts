@@ -16,6 +16,7 @@ const initUsersState: UsersInitState = {
 export const users = (state = initUsersState, action: UsersActionTypes) => {
   switch (action.type) {
     case GET_USERS_SUCCESS:
+      console.log(action.payload, "HERERERRERERER")
       return { ...state, users: action.payload }
     default:
       return state
