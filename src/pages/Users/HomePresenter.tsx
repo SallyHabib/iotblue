@@ -9,9 +9,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {
-  dispatchGetUsersRequest
+  dispatchGetUsersRequest,
+  dispatchGetUserDetailsRequest
 } from '../../store/users/actions'
-const HomePresenter = ({ getUsersRequest }: any) => {
+const HomePresenter = ({ getUsersRequest, getUserDetailsRequest, history }: any) => {
   const users = useSelector((state: RootState) => state.users.users);
 
   const [usersState, setUsersState] = useState(users);
@@ -25,7 +26,11 @@ const HomePresenter = ({ getUsersRequest }: any) => {
     getUsersRequest();
   }, []);
 
-  console.log("USERS", users)
+  console.log(history)
+  const handleOnClick = (id:any) => {
+    history.push(`/user-details/${id}`);
+  };
+
 
   return (
     <Grid container flexDirection='row' spacing={2}>
@@ -43,11 +48,11 @@ const HomePresenter = ({ getUsersRequest }: any) => {
                   {user.firstName}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                 {user.title.toUpperCase()} {' '} {user.firstName} {' '} {user.lastName}
+                  {user.title.toUpperCase()} {' '} {user.firstName} {' '} {user.lastName}
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Learn More</Button>
+                <Button onClick={() => handleOnClick(user.id)} size="small">Learn More</Button>
               </CardActions>
             </Card>
           </Grid>
@@ -66,6 +71,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     // dispatching plain actions
     getUsersRequest: () => dispatch(dispatchGetUsersRequest()),
+    getUserDetailsRequest: (payload: any) => dispatch(dispatchGetUserDetailsRequest(payload)),
   }
 }
 

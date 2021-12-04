@@ -1,24 +1,30 @@
 import {
-GET_USERS_REQUEST,
-GET_USERS_FAILED,
-GET_USERS_SUCCESS
-} from '../actions'
-import { UsersActionTypes } from '../actions/types'
+  GET_USERS_REQUEST,
+  GET_USERS_FAILED,
+  GET_USERS_SUCCESS,
+  GET_USER_DETAILS_SUCCESS,
+} from "../actions";
+import { UsersActionTypes } from "../actions/types";
 
 interface UsersInitState {
-  users: Array<any>
+  users: Array<any>;
+  userDetails: any;
 }
 
 const initUsersState: UsersInitState = {
-  users: []
-}
+  users: [],
+  userDetails: {},
+};
 
 export const users = (state = initUsersState, action: UsersActionTypes) => {
   switch (action.type) {
     case GET_USERS_SUCCESS:
-      console.log(action.payload, "HERERERRERERER")
-      return { ...state, users: action.payload }
+      return { ...state, users: action.payload };
+
+    case GET_USER_DETAILS_SUCCESS:
+      return { ...state, USER: action.payload };
+
     default:
-      return state
+      return state;
   }
-}
+};

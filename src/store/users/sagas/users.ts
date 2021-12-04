@@ -13,7 +13,6 @@ export function* getUsers() {
     .then(function (response) {
       // handle success
       data = response.data.data;
-      console.log(response.data.data);
     })
     .catch(function (error) {
       // handle error
@@ -21,7 +20,6 @@ export function* getUsers() {
     });
 
   if (data) {
-    console.log("heee")
     yield put({ type: GET_USERS_SUCCESS, payload: data });
   }
 }
