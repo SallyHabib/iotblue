@@ -6,5 +6,5 @@ export const GET_USER_DETAILS = 'GET_USER_DETAILS';
 export const GET_USER_DETAILS_SUCCESS = 'GET_USER_DETAILS_SUCCESS';
 export const GET_USER_DETAILS_FAILED = 'GET_USER_DETAILS_FAILED';
 
-export const dispatchGetUsersRequest = () => ({ type: GET_USERS_REQUEST });
-export const dispatchGetUserDetailsRequest = (payload:any) => ({ type: GET_USER_DETAILS, payload });
+export const dispatchGetUsersRequest = (payload: any) => ({ type: GET_USERS_REQUEST, payload });
+export const dispatchGetUserDetailsRequest = (payload:GetUserDetailsRequestPayload) => ({ type: GET_USER_DETAILS, payload });

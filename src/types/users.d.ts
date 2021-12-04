@@ -2,6 +2,8 @@ interface HomePresenterProps {
   getUsersRequest: Function;
   users: Array;
   history: any;
+  offset: number;
+  total: number;
 }
 
 interface UserDetailsProps {
@@ -17,14 +19,14 @@ interface UserDetails {
   id: string;
   lastName: string;
   location: {
-    street: string
-    city: string
-    state: string
+    street: string;
+    city: string;
+    state: string;
     country: string;
     timezone: string;
   };
-  phone:string;
-  picture: string
+  phone: string;
+  picture: string;
   registerDate: string;
   title: string;
   updatedDate: string;
@@ -32,8 +34,15 @@ interface UserDetails {
 
 // TODO: FIX the type against profile response
 interface InGetUserSuccessPayload {
-  users: Array;
+  data: any;
+  total: any
 }
 interface InGetUserDetailsSuccessPayload {
-  userDetails: Array
+  userDetails: Array;
+}
+
+interface GetUserDetailsRequestPayload {
+  params: {
+    id: string;
+  };
 }

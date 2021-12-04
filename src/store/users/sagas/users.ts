@@ -6,13 +6,16 @@ const headers = {
   "app-id": "61a96330663476b5ce42d3bd",
 };
 
-export function* getUsers() {
+export function* getUsers(action: any) {
   let data = null;
+  console.log(action.payload);
   yield axios
-    .get("https://dummyapi.io/data/v1/user", { headers })
+    .get(`https://dummyapi.io/data/v1/user?page=${action.payload.offset}`, {
+      headers,
+    })
     .then(function (response) {
       // handle success
-      data = response.data.data;
+      data = response.data;
     })
     .catch(function (error) {
       // handle error
