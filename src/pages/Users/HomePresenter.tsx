@@ -1,6 +1,5 @@
-import React, { useState, memo, useEffect } from 'react'
-import { compose } from "redux";
-import { useDispatch, useSelector, connect } from 'react-redux'
+import  { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import CardActions from '@mui/material/CardActions';
@@ -12,8 +11,7 @@ import {
   dispatchGetUsersRequest,
   dispatchGetUserDetailsRequest
 } from '../../store/users/actions'
-const HomePresenter = ({ getUsersRequest, getUserDetailsRequest, history }: any) => {
-  const users = useSelector((state: RootState) => state.users.users);
+const HomePresenter = ({ getUsersRequest, users , history }: HomePresenterProps) => {
 
   const [usersState, setUsersState] = useState(users);
 

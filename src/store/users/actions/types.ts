@@ -7,7 +7,7 @@ import {
 
 export interface InGetUserSuccessAction {
   type: typeof GET_USERS_SUCCESS;
-  payload: any;
+  payload: InGetUserSuccessPayload;
 }
 export interface InGetUserFailedAction {
   type: typeof GET_USERS_FAILED;
@@ -15,7 +15,7 @@ export interface InGetUserFailedAction {
 
 export interface InGetUserDetailsSuccessAction {
   type: typeof GET_USER_DETAILS_SUCCESS;
-  payload: any;
+  payload: InGetUserDetailsSuccessPayload;
 }
 export interface InGetUserDetailsFailedAction {
   type: typeof GET_USER_DETAILS_FAILED;

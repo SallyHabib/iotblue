@@ -1,5 +1,5 @@
 import React from 'react'
-import { Provider, useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import { hello } from './routes/routes'
 import store, { history } from './store'
 import { ConnectedRouter } from 'connected-react-router'
@@ -13,17 +13,5 @@ const App: React.FC = () => {
     </Provider>
   )
 }
-
-// const AppStart = () => {
-//   const appStart = useSelector((state: RootState) => state.common.appStart)
-
-//   return appStart ? (
-//     <Container>
-//       <ConnectedRouter history={history}>{routes}</ConnectedRouter>
-//     </Container>
-//   ) : (
-//     <Container>Loading...</Container>
-//   )
-// }
 
 export default App

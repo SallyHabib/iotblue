@@ -1,6 +1,4 @@
 import {
-  GET_USERS_REQUEST,
-  GET_USERS_FAILED,
   GET_USERS_SUCCESS,
   GET_USER_DETAILS_SUCCESS,
 } from "../actions";
@@ -22,7 +20,7 @@ export const users = (state = initUsersState, action: UsersActionTypes) => {
       return { ...state, users: action.payload };
 
     case GET_USER_DETAILS_SUCCESS:
-      return { ...state, USER: action.payload };
+      return { ...state, userDetails: action.payload };
 
     default:
       return state;
