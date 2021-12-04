@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route,   BrowserRouter as Router } from 'react-router-dom'
-import Home from '../pages/Home'
+import Home from '../pages/Users'
 
 export const hello = (
   <>

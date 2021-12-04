@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects'
-import { signOutFlow } from './auth'
+import { getUsers } from './users'
 
 export function* authSaga() {
-  yield all([signOutFlow()])
+  yield all([getUsers()])
 }

@@ -1,29 +1,22 @@
 import {
-  SIGN_IN_FAILURE,
-  SIGN_IN_SUCCESS,
-  SIGN_OUT_FAILURE,
-  SIGN_OUT_SUCCESS
+GET_USERS_REQUEST,
+GET_USERS_FAILED,
+GET_USERS_SUCCESS
 } from '../actions'
-import { AuthActionTypes } from '../actions/types'
+import { UsersActionTypes } from '../actions/types'
 
-interface IAuthInitState {
-  isAuthenticated: boolean
+interface UsersInitState {
+  users: Array<any>
 }
 
-const initAuthState: IAuthInitState = {
-  isAuthenticated: false
+const initUsersState: UsersInitState = {
+  users: []
 }
 
-export const auth = (state = initAuthState, action: AuthActionTypes) => {
+export const users = (state = initUsersState, action: UsersActionTypes) => {
   switch (action.type) {
-    case SIGN_IN_SUCCESS:
-      return { ...state, isAuthenticated: true }
-    case SIGN_IN_FAILURE:
-      return { ...state, isAuthenticated: false }
-    case SIGN_OUT_SUCCESS:
-      return { ...state, isAuthenticated: false }
-    case SIGN_OUT_FAILURE:
-      return { ...state }
+    case GET_USERS_SUCCESS:
+      return { ...state, users: action.payload }
     default:
       return state
   }
