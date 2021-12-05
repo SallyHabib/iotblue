@@ -51,7 +51,7 @@ export function* getUserDetails(action: any) {
 
 export function* createUser(action: any) {
   let data = JSON.stringify(action.payload);
- yield axios.post("https://dummyapi.io/data/v1/user/create", {  headers, data })
+ yield axios.post("https://dummyapi.io/data/v1/user/create", {  headers:{ "app-id": "61a96330663476b5ce42d3bd"}, data })
     .then(function (response) {
       // handle success
       console.log(response);

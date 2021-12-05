@@ -72,19 +72,19 @@ const HomePresenter = ({ getUsersRequest, users, history, total, createUserReque
   }
 
   const handleSubmit = () => {
-    createUserRequest({firstName, lastName, email})
+    createUserRequest({ firstName, lastName, email })
   }
 
-  const onChangeFirstName = (e:any) => {
+  const onChangeFirstName = (e: any) => {
     setFirstName(e.target.value)
   }
 
-  const onChangeLastName = (e:any) => {
+  const onChangeLastName = (e: any) => {
     setLastName(e.target.value)
 
   }
 
-  const onChangeEmail = (e:any) => {
+  const onChangeEmail = (e: any) => {
     setEmail(e.target.value)
 
   }
@@ -99,15 +99,15 @@ const HomePresenter = ({ getUsersRequest, users, history, total, createUserReque
           aria-labelledby="child-modal-title"
           aria-describedby="child-modal-description"
         >
-            <Box sx={{ ...style, width: 500, height: 300, alignContent:'center' }} component="form" >
-              <Grid container flexDirection='column' spacing={3}>
-                <TextField onChange={onChangeFirstName} style={{padding: 10}} id="outlined-basic" label="First Name" variant="outlined" />
-                <TextField onChange={onChangeLastName}  style={{padding: 10}} id="outlined-basic" label="Last Name" variant="outlined" />
-                <TextField onChange={onChangeEmail}  style={{padding: 10}} id="email" label="Email" variant="outlined" />
-              </Grid>
+          <Box sx={{ ...style, width: 500, height: 300, alignContent: 'center' }} component="form" >
+            <Grid container flexDirection='column' spacing={3}>
+              <TextField onChange={onChangeFirstName} style={{ padding: 10 }} id="outlined-basic" label="First Name" variant="outlined" />
+              <TextField onChange={onChangeLastName} style={{ padding: 10 }} id="outlined-basic" label="Last Name" variant="outlined" />
+              <TextField onChange={onChangeEmail} style={{ padding: 10 }} id="email" label="Email" variant="outlined" />
+            </Grid>
             <Button onClick={handleClose}>Close</Button>
             <Button onClick={handleSubmit}>Submit</Button>
-            </Box>
+          </Box>
         </Modal>
       }
       <Grid container flexDirection='row' spacing={2}>
@@ -120,17 +120,23 @@ const HomePresenter = ({ getUsersRequest, users, history, total, createUserReque
           return (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card sx={{ maxWidth: '80%' }}>
-                <CardMedia
-                  component="img"
-                  image={user.picture}
-                />
+                {user.picture &&
+                  <CardMedia
+                    component="img"
+                    image={user.picture}
+                  />
+                }
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {user.firstName}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {user.title.toUpperCase()} {' '} {user.firstName} {' '} {user.lastName}
-                  </Typography>
+                  {user.firstName &&
+                    <Typography gutterBottom variant="h5" component="div">
+                      {user.firstName}
+                    </Typography>
+                  }
+                  {user.title &&
+                    <Typography variant="body2" color="text.secondary">
+                      {user.title.toString().charAt(0).toUpperCase() + user.title.slice(1)} {' '} {user.firstName} {' '} {user.lastName}
+                    </Typography>
+                  }
                 </CardContent>
                 <CardActions>
                   <Button onClick={() => handleOnClick(user.id)} size="small">Learn More</Button>
