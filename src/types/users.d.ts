@@ -1,5 +1,6 @@
 interface HomePresenterProps {
   getUsersRequest: Function;
+  createUserRequest: Function;
   users: Array;
   history: any;
   offset: number;

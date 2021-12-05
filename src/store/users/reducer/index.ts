@@ -7,14 +7,12 @@ import { UsersActionTypes } from "../actions/types";
 interface UsersInitState {
   users: Array<any>;
   userDetails: any;
-  offset: number;
   total: number;
 }
 
 const initUsersState: UsersInitState = {
   users: [],
   userDetails: {},
-  offset: 0,
   total: 0
 };
 

@@ -1,6 +1,10 @@
 import { put } from "redux-saga/effects";
 import axios from "axios";
-import { GET_USERS_SUCCESS, GET_USER_DETAILS_SUCCESS } from "../actions";
+import {
+  CREATE_USER_SUCCESS,
+  GET_USERS_SUCCESS,
+  GET_USER_DETAILS_SUCCESS,
+} from "../actions";
 
 const headers = {
   "app-id": "61a96330663476b5ce42d3bd",
@@ -43,4 +47,19 @@ export function* getUserDetails(action: any) {
   if (userDetails) {
     yield put({ type: GET_USER_DETAILS_SUCCESS, payload: userDetails });
   }
+}
+
+export function* createUser(action: any) {
+  let data = JSON.stringify(action.payload);
+ yield axios.post("https://dummyapi.io/data/v1/user/create", {  headers, data })
+    .then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    });
+
+  yield put({ type: CREATE_USER_SUCCESS, payload: {} });
 }
