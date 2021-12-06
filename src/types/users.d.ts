@@ -1,10 +1,12 @@
 interface HomePresenterProps {
   getUsersRequest: Function;
   createUserRequest: Function;
+  resetSuccess : Function;
   users: Array;
   history: any;
   offset: number;
   total: number;
+  success: boolean
 }
 
 interface UserDetailsProps {

@@ -4,6 +4,7 @@ import {
   GET_USER_DETAILS_SUCCESS,
   GET_USER_DETAILS_FAILED,
   CREATE_USER_SUCCESS,
+  RESET_SUCCESS,
 } from ".";
 
 export interface InGetUserSuccessAction {
@@ -27,9 +28,14 @@ export interface InCreateUserSuccessAction {
   payload: any;
 }
 
+export interface ResetSuccessAction {
+  type: typeof RESET_SUCCESS;
+}
+
 export type UsersActionTypes =
   | InGetUserSuccessAction
   | InGetUserFailedAction
   | InGetUserDetailsSuccessAction
   | InGetUserDetailsFailedAction
   | InCreateUserSuccessAction
+  | ResetSuccessAction;

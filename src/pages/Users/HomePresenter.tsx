@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Pagination from '@mui/lab/Pagination';
 import AddIcon from '@mui/icons-material/Add';
+import Alert from '@mui/material/Alert';
 import {
   CardActions,
   Card,
@@ -18,9 +19,17 @@ import {
 import {
   dispatchGetUsersRequest,
   dispatchGetUserDetailsRequest,
-  dispatchCreateUserRequest
+  dispatchCreateUserRequest,
+  dispatchResetSuccessRequest
 } from '../../store/users/actions'
-const HomePresenter = ({ getUsersRequest, users, history, total, createUserRequest }: HomePresenterProps) => {
+const HomePresenter = ({
+  getUsersRequest,
+  users,
+  history,
+  total,
+  success,
+  createUserRequest,
+  resetSuccess }: HomePresenterProps) => {
 
   const [usersState, setUsersState] = useState(users);
   const [page, setPage] = useState(1);
@@ -59,6 +68,11 @@ const HomePresenter = ({ getUsersRequest, users, history, total, createUserReque
     getUsersRequest({ offset: 0, limit });
   }, []);
 
+  useEffect(() => {
+    resetSuccess();
+    setModalOpened(false);
+  }, [success])
+
   const handleOnClick = (id: string) => {
     history.push(`/user-details/${id}`);
   };
@@ -91,6 +105,9 @@ const HomePresenter = ({ getUsersRequest, users, history, total, createUserReque
 
   return (
     <React.Fragment>
+      {success &&
+        <Alert severity="success">User Created Success</Alert>
+      }
       {modalOpened &&
         <Modal
           hideBackdrop
@@ -162,7 +179,8 @@ const HomePresenter = ({ getUsersRequest, users, history, total, createUserReque
 
 const mapStateToProps = (state: RootState) => ({
   users: state.users.users,
-  total: state.users.total
+  total: state.users.total,
+  success: state.users.success
 })
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -171,6 +189,7 @@ const mapDispatchToProps = (dispatch: any) => {
     getUsersRequest: (payload: any) => dispatch(dispatchGetUsersRequest(payload)),
     createUserRequest: (payload: any) => dispatch(dispatchCreateUserRequest(payload)),
     getUserDetailsRequest: (payload: any) => dispatch(dispatchGetUserDetailsRequest(payload)),
+    resetSuccess: () => dispatch(dispatchResetSuccessRequest()),
   }
 }
 

@@ -1,13 +1,14 @@
 import { put } from "redux-saga/effects";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import {
   CREATE_USER_SUCCESS,
   GET_USERS_SUCCESS,
   GET_USER_DETAILS_SUCCESS,
 } from "../actions";
 
+console.log(process.env.REACT_APP_APPID)
 const headers = {
-  "app-id": "61a96330663476b5ce42d3bd",
+  "app-id": process.env.REACT_APP_APPID!
 };
 
 export function* getUsers(action: any) {
@@ -51,15 +52,24 @@ export function* getUserDetails(action: any) {
 
 export function* createUser(action: any) {
   let data = JSON.stringify(action.payload);
- yield axios.post("https://dummyapi.io/data/v1/user/create", {  headers:{ "app-id": "61a96330663476b5ce42d3bd"}, data })
+  let response = null;
+  var config: AxiosRequestConfig = {
+    method: "post",
+    url: "https://dummyapi.io/data/v1/user/create",
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    },
+    data: data,
+  };
+
+  yield axios(config)
     .then(function (response) {
-      // handle success
-      console.log(response);
+      response = response.data;
     })
     .catch(function (error) {
-      // handle error
       console.log(error);
     });
 
-  yield put({ type: CREATE_USER_SUCCESS, payload: {} });
+  yield put({ type: CREATE_USER_SUCCESS, payload: response });
 }
