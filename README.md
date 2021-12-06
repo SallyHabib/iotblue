@@ -1,10 +1,15 @@
-# Getting Started with Create React App
+# IOT BLUE TASK
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## IMPORTANT
+Before running the project, you are required to create a ".env.staging" file with variable name "REACT_APP_APPID" and add your APP ID
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn`
+
+to install the node modules
 
 ### `yarn start`
 
