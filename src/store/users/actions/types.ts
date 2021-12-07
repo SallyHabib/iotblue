@@ -5,6 +5,7 @@ import {
   GET_USER_DETAILS_FAILED,
   CREATE_USER_SUCCESS,
   RESET_SUCCESS,
+  CREATE_USER_FAILED,
 } from ".";
 
 export interface InGetUserSuccessAction {
@@ -19,6 +20,11 @@ export interface InGetUserDetailsSuccessAction {
   type: typeof GET_USER_DETAILS_SUCCESS;
   payload: InGetUserDetailsSuccessPayload;
 }
+
+export interface InGetUserDetailsFailedAction {
+  type: typeof GET_USER_DETAILS_FAILED;
+}
+
 export interface InGetUserDetailsFailedAction {
   type: typeof GET_USER_DETAILS_FAILED;
 }
@@ -26,6 +32,10 @@ export interface InGetUserDetailsFailedAction {
 export interface InCreateUserSuccessAction {
   type: typeof CREATE_USER_SUCCESS;
   payload: any;
+}
+
+export interface InCreateUserFailedAction {
+  type: typeof CREATE_USER_FAILED;
 }
 
 export interface ResetSuccessAction {
@@ -38,4 +48,6 @@ export type UsersActionTypes =
   | InGetUserDetailsSuccessAction
   | InGetUserDetailsFailedAction
   | InCreateUserSuccessAction
-  | ResetSuccessAction;
+  | ResetSuccessAction
+  | InGetUserDetailsFailedAction
+  | InCreateUserFailedAction

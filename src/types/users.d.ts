@@ -1,18 +1,41 @@
 interface HomePresenterProps {
   getUsersRequest: Function;
   createUserRequest: Function;
-  resetSuccess : Function;
+  resetSuccess: Function;
   users: Array;
   history: any;
   offset: number;
   total: number;
-  success: boolean
+  success: boolean;
+  errorOccured: boolean;
+  resetError: Function;
+}
+
+interface GetUsersObject {
+  id: string;
+  title: string;
+  firstName: string;
+  lastName: string;
+  picture: string;
 }
 
 interface UserDetailsProps {
   userDetails: UserDetails;
   getUserDetailsRequest: Function;
 }
+
+interface GetUserDetailsPayload {
+  params: {
+    id: string;
+  };
+}
+
+interface CreateUserPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
 
 interface UserDetails {
   dateOfBirth: string;
@@ -38,7 +61,7 @@ interface UserDetails {
 // TODO: FIX the type against profile response
 interface InGetUserSuccessPayload {
   data: any;
-  total: any
+  total: any;
 }
 interface InGetUserDetailsSuccessPayload {
   userDetails: Array;

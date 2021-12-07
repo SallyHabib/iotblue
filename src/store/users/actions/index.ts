@@ -11,8 +11,9 @@ export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
 export const CREATE_USER_FAILED = "CREATE_USER_FAILED";
 
 export const RESET_SUCCESS = "RESET_SUCCESS";
+export const RESET_ERROR = "RESET_ERROR";
 
-export const dispatchGetUsersRequest = (payload: any) => ({
+export const dispatchGetUsersRequest = (payload: GetUserDetailsPayload) => ({
   type: GET_USERS_REQUEST,
   payload,
 });
@@ -21,9 +22,10 @@ export const dispatchGetUserDetailsRequest = (
   payload: GetUserDetailsRequestPayload
 ) => ({ type: GET_USER_DETAILS, payload });
 
-export const dispatchCreateUserRequest = (payload: any) => ({
+export const dispatchCreateUserRequest = (payload: CreateUserPayload) => ({
   type: CREATE_USER_REQUEST,
   payload,
 });
 
 export const dispatchResetSuccessRequest = () => ({ type: RESET_SUCCESS });
+export const dispatchResetErrorRequest = () => ({ type: RESET_ERROR });

@@ -20,7 +20,8 @@ import {
   dispatchGetUsersRequest,
   dispatchGetUserDetailsRequest,
   dispatchCreateUserRequest,
-  dispatchResetSuccessRequest
+  dispatchResetSuccessRequest,
+  dispatchResetErrorRequest
 } from '../../store/users/actions'
 const HomePresenter = ({
   getUsersRequest,
@@ -29,7 +30,9 @@ const HomePresenter = ({
   total,
   success,
   createUserRequest,
-  resetSuccess }: HomePresenterProps) => {
+  errorOccured,
+  resetSuccess,
+  resetError }: HomePresenterProps) => {
 
   const [usersState, setUsersState] = useState(users);
   const [page, setPage] = useState(1);
@@ -69,9 +72,14 @@ const HomePresenter = ({
   }, []);
 
   useEffect(() => {
-    resetSuccess();
+    setTimeout(() => { resetSuccess(); }, 2000)
     setModalOpened(false);
   }, [success])
+
+  useEffect(() => {
+    setTimeout(() => { resetError(); }, 2000)
+    setModalOpened(false);
+  }, [errorOccured])
 
   const handleOnClick = (id: string) => {
     history.push(`/user-details/${id}`);
@@ -107,6 +115,9 @@ const HomePresenter = ({
     <React.Fragment>
       {success &&
         <Alert severity="success">User Created Success</Alert>
+      }
+      {errorOccured &&
+        <Alert severity="error">Something went wrong please try again !!!</Alert>
       }
       {modalOpened &&
         <Modal
@@ -180,16 +191,17 @@ const HomePresenter = ({
 const mapStateToProps = (state: RootState) => ({
   users: state.users.users,
   total: state.users.total,
-  success: state.users.success
+  success: state.users.success,
+  errorOccured: state.users.errorOccured
 })
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    // dispatching plain actions
     getUsersRequest: (payload: any) => dispatch(dispatchGetUsersRequest(payload)),
-    createUserRequest: (payload: any) => dispatch(dispatchCreateUserRequest(payload)),
-    getUserDetailsRequest: (payload: any) => dispatch(dispatchGetUserDetailsRequest(payload)),
+    createUserRequest: (payload: CreateUserPayload) => dispatch(dispatchCreateUserRequest(payload)),
+    getUserDetailsRequest: (payload: GetUserDetailsPayload) => dispatch(dispatchGetUserDetailsRequest(payload)),
     resetSuccess: () => dispatch(dispatchResetSuccessRequest()),
+    resetError: () => dispatch(dispatchResetErrorRequest()),
   }
 }
 

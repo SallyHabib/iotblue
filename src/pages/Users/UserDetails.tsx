@@ -82,7 +82,7 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = (dispatch: any) => {
 	return {
 		// dispatching plain actions
-		getUserDetailsRequest: (payload: any) => dispatch(dispatchGetUserDetailsRequest(payload)),
+		getUserDetailsRequest: (payload: GetUserDetailsPayload) => dispatch(dispatchGetUserDetailsRequest(payload)),
 	}
 }
 
